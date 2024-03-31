@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Provider } from "react-redux";
+import store from '@/reducers/index'
+import 'react-toastify/dist/ReactToastify.css';
+import Toast from "./context/Toast";
+import AuthContext from "./context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthContext >
+          <Toast />
+          {children}
+        </AuthContext>
+      </body>
     </html>
   );
 }
